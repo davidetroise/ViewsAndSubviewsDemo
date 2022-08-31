@@ -9,9 +9,32 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var greetings: String = "Hello, world!"
+    
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        VStack {
+            Text(greetings)
+                .font(.largeTitle)
+                .padding()
+            
+            ButtonView(greetings: $greetings)
+        }
+    }
+}
+
+struct ButtonView: View {
+    @Binding var greetings: String
+
+    var body: some View {
+        Button {
+            greetings = "Ciao, mondo!"
+        } label: {
+            Text("Translate in Italian")
+                .foregroundColor(.white)
+                .padding()
+                .background(.red)
+                .clipShape(Capsule())
+        }
     }
 }
 
